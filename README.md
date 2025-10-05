@@ -50,13 +50,25 @@ Body (raw / JSON):
 Response:
 {
   "message": "Login successful",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5..."
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5...",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5..."
 }
 
-<!-- 정보 조회 -->
+<!-- 토큰 재발급 -->
+POST https://symphony-mcp-auth-backend.onrender.com/auth/refresh
+Body (raw / JSON):
+{
+  "refreshToken": "<YOUR_REFRESH_TOKEN>"
+}
+Response:
+{
+  "accessToken": "new-access-token"
+}
+
+<!-- 내 정보 조회 -->
 GET https://symphony-mcp-auth-backend.onrender.com/me
 Headers:
-Authorization: Bearer <JWT_TOKEN>
+Authorization: Bearer <ACCESS_TOKEN>
 Response:
 {
   "id": "uuid-unique-id",
@@ -65,14 +77,36 @@ Response:
   "role": "user"
 }
 
+<!-- 내 정보 수정 -->
+PATCH https://symphony-mcp-auth-backend.onrender.com/me
+Headers:
+Authorization: Bearer <ACCESS_TOKEN>
+Body (raw / JSON):
+{
+  "email": "new@example.com",
+  "name": "newname",
+  "password": "newpass"
+}
+Response:
+{
+  "message": "Profile updated",
+  "user": {
+    "id": "uuid-unique-id",
+    "email": "new@example.com",
+    "name": "newname",
+    "role": "user"
+  }
+}
+
 <!-- 계정 삭제 -->
 DELETE https://symphony-mcp-auth-backend.onrender.com/me
 Headers:
-Authorization: Bearer <JWT_TOKEN>
+Authorization: Bearer <ACCESS_TOKEN>
 Response:
 {
-  "message": "User deleted successfully"
+  "message": "Account deleted successfully"
 }
+
 
 ## 🌐 배포 주소
 https://symphony-mcp-auth-backend.onrender.com  
