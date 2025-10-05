@@ -21,6 +21,59 @@ Database: Supabase (PostgreSQL)
 
 ---
 
+## Symphony MCP Auth Backend API Guide
+
+Base URL: https://symphony-mcp-auth-backend.onrender.com
+
+<!-- 회원가입 -->
+POST https://symphony-mcp-auth-backend.onrender.com/auth/register
+Body (raw / JSON):
+{
+  "email": "test@example.com",
+  "password": "12345678",
+  "name": "jonggwan",
+  "role": "user"
+}
+Response:
+{
+  "id": "uuid-unique-id",
+  "email": "test@example.com"
+}
+
+<!-- 로그인 -->
+POST https://symphony-mcp-auth-backend.onrender.com/auth/login
+Body (raw / JSON):
+{
+  "email": "test@example.com",
+  "password": "12345678"
+}
+Response:
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5..."
+}
+
+<!-- 정보 조회 -->
+GET https://symphony-mcp-auth-backend.onrender.com/me
+Headers:
+Authorization: Bearer <JWT_TOKEN>
+Response:
+{
+  "id": "uuid-unique-id",
+  "email": "test@example.com",
+  "name": "jonggwan",
+  "role": "user"
+}
+
+<!-- 계정 삭제 -->
+DELETE https://symphony-mcp-auth-backend.onrender.com/me
+Headers:
+Authorization: Bearer <JWT_TOKEN>
+Response:
+{
+  "message": "User deleted successfully"
+}
+
 ## 🌐 배포 주소
 https://symphony-mcp-auth-backend.onrender.com  
 예시 요청:  
