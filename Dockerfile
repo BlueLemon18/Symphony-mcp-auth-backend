@@ -18,4 +18,4 @@ RUN npx prisma generate
 EXPOSE 4000
 
 # 7. 서버 실행 명령
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
