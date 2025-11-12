@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "rbac": {
+    "roles": {
+      "admin": {
+        "allowWrite": [
+          "**/*"
+        ],
+        "canEditPolicy": true,
+        "canEditRoles": true
+      },
+      "developer": {
+        "allowWrite": [
+          "src/**",
+          "tests/**",
+          "docs/**"
+        ],
+        "denyWrite": [
+          ".sym/**",
+          "config/**",
+          "*.config.js",
+          "*.config.ts"
+        ]
+      },
+      "viewer": {
+        "denyWrite": [
+          "**/*"
+        ]
+      }
+    }
+  },
+  "defaults": {
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "severity": "error",
+    "autofix": true
+  },
+  "rules": []
+}
